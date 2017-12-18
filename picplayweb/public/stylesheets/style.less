@@ -1,0 +1,262 @@
+body {
+  background-color: rgb(188, 188, 188);
+  margin: 0;
+}
+* {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ W3 JIS2004" , "Hiragino Kaku Gothic W3 JIS2004",  "Yu Gothic UI", "游ゴシック体", "Yu Gothic", YuGothic,"ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, Osaka, sans-serif;
+}
+#headder {
+  display: flex;
+  a,h1{
+      margin-right: auto;
+      color:black;
+  }
+  span{
+      display: inline-flex;
+      align-items: center;
+      input{
+        border: 1px solid blue;
+      }
+      button{
+        background-color: #81DAF5;
+      }
+  }
+}
+#wrap,#footer{
+    max-width: 768px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#wrap {
+  background-color: white;
+  min-height: 100vh;
+  padding: 0px 20px 20px 20px;
+}
+#rank_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .ranking{
+    flex: 1;
+    h2{
+      text-align: center;
+    }
+  }
+}
+.ranking {
+  background-color: #E0F8F7;
+  border:1px solid #58D3F7;
+  border-radius: 5px;
+  //margin-top: 10px;
+  a,a:visited{
+    color:black;
+  }
+}
+#daily{
+  margin-right: 2px;
+}
+#total{
+  margin-left: 2px;
+}
+#mobilemenu{
+  display: none;
+}
+.info {
+  display: flex;
+  margin-top: 5px;
+  padding:10px;
+  background-color: #A9F5A9;
+  border-radius: 10px;
+  border: 1px solid #01DF01;
+  p{
+    font-size: 15px;
+    margin:0;
+  }
+  button{
+    margin-left: auto;
+    color:white;
+    background-color: #FA5882;
+    border: 1px solid red;
+  }
+}
+.menu{
+  display: flex;
+  p:first-child{
+    margin-right: auto;
+  }
+}
+.rank_item{
+  margin:15px;
+  background-color: white;
+  border: 1px solid rgb(200,200,200);
+  border-radius: 2px;
+  //text-shadow: 1px 1px gray;
+  padding: 10px;
+  span{
+    margin:2px 5px;
+    display: flex;
+    p{
+      margin-left: auto;
+    }
+  }
+  p{
+    text-align: center;
+  }
+  img{
+    display: block;
+    margin:0 auto;
+  }
+}
+.rank_item:hover{
+  transition: all 300ms 0s ease;
+  border:1px solid blue;
+}
+.rank_top{
+  img{
+    max-height: 350px;
+    max-width: 250px;
+  }
+}
+.rank_other{
+  img{
+    max-height: 150px;
+    max-width: 250px;
+  }
+}
+.rank_search{
+  span{
+    display: block;
+    p{
+      font-size: 9px;
+      max-width: 200px;
+    }
+    h3,p{
+      margin: 0;
+    }
+  }
+  img{
+    max-width: 200px;
+    max-height: 200px;
+  }
+  p{
+    margin: 0;
+    max-width: 200px;
+    font-size:12px;
+  }
+
+}
+.rank_item + .rank_search{
+  margin: 5px;
+  padding: 3px;
+}
+#footer {
+  padding: 20px;
+  background-color:#2ECCFA;
+  p{
+    text-align: center;
+    color:white;
+  }
+}
+.disable{
+  pointer-events: none;
+  color: gray;
+
+}
+a {
+text-decoration: none;
+}
+#page-top {
+    font-size: 0;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    opacity: 0;
+}
+#page-top.fade-in {
+    color: #000;
+    font-size: 60px;
+    opacity: 0.6;
+    transition: opacity 1s;
+}
+.upicon{
+  font-size: 60px;
+}
+.upicon:hover{
+  cursor: pointer;
+}
+.monappy_button{
+  height: 20px;
+  box-sizing: border-box;
+  padding: 1px 8px 1px 6px;
+  background-color: #F7D358;
+  color: #000;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  vertical-align: top;
+  display: inline-block;
+  font-size: 12px;
+}
+.m {
+  display: none;
+}
+.sa {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+@media screen and (max-width:1210px) {
+ .sa{
+   display: none;
+ }
+}
+@media screen and (max-width:767px) {
+  #wrap{
+    padding: 0;
+  }
+  .rank_item {
+    margin: 5px 0px;
+  }
+  #wrap,#footer{
+      max-width: none;
+      margin:0;
+  }
+  #headder {
+    display: block;
+    h1{
+      text-align: center;
+        margin: auto;
+    }
+    span{
+        display: block;
+        text-align: center;
+        align-items: none;
+    }
+  }
+  .menu{
+    display: block;
+  }
+  #rank_wrap {
+    display: block;
+  }
+  #daily{
+    margin-right: 0px;
+  }
+  #total{
+    margin-left: 0px;
+  }
+  #mobilemenu{
+    display: block;
+    p{
+      text-align:center;
+    }
+  }
+  .pc {
+    display: none;
+  }
+  .m {
+    display: block;
+  }
+}

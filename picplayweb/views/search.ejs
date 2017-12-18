@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64576587-6"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-64576587-6');
+  </script>
+  <script type="text/javascript" src="/javascripts/main.js"></script>
+  <script async type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/layzr.js/2.2.2/layzr.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
+  <title><%- sw %>の検索結果|PicPlayer|Monappyピクプレランキング 人気順検索</title>
+  <meta name="description" content="<%- sw %>のMonappyピクプレ人気順ランキング">
+</head>
+<body>
+  <div id="wrap">
+    <div id="headder">
+      <a href="/"><h1 class="logo">PicPlayer</h1></a>
+      <span>
+        <input id="stxt" class="searchbar" type="text" name="word" size="30" maxlength="50" onkeydown="search(false);">
+        <button onclick="search(true);">🔍</button>
+      </span>
+    </div>
+    <div class="info">
+      <p>開発者は五十嵐響子ちゃんと櫻田光ちゃんが好きなので描いてくれると喜びます</p>
+      <button onclick="infoExit();">☓</button>
+    </div>
+    <br>
+    <div class="a1">
+      <a class="pc" href="https://monappy.jp/u/me" target="_blank"><img src="images/a1.png"></a>
+      <a class="m" href="https://monappy.jp/u/me" target="_blank"><img src="images/a3.png"></a>
+    </div>
+    <div class="a2">
+      <a class="sa" href="https://monappy.jp/u/me" target="_blank"><img src="images/a2.png"></a>
+    </div>
+    <div class="menu">
+      <p><%- imenu %></p>
+      <p><%- tmenu %></p>
+    </div>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-hashtags="picplayer" data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    <a href="https://twitter.com/sudosan?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false">Follow @sudosan</a>
+    <br>サーバーの維持費の寄付はこちらにお願いします <a class="monappy_button" href="https://monappy.jp/u/me" target="_blank">Monappy</a>
+    <h2><%- sw %>の検索結果</h2>
+    <div id="rank_wrap">
+      <%- result %>
+    </div>
+  </div>
+  <div id="footer">
+    <p>(C)sudosan 画像等の著作権は作者に帰属します。</p>
+    <p>このサイトはMonappyの公開APIを利用して提供しております</p>
+  </div>
+  <div id="page-top" class="upicon">👆</div>
+  <script>
+    window.addEventListener("DOMContentLoaded",function(){
+      document.getElementById("stxt").value="<%- sw %>";
+    },false);
+  </script>
+  <script async type="text/javascript" src="/javascripts/top.js"></script>
+</body>
+</html>

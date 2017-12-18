@@ -1,0 +1,257 @@
+body {
+  background-color: #bcbcbc;
+  margin: 0;
+}
+* {
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ W3 JIS2004", "Hiragino Kaku Gothic W3 JIS2004", "Yu Gothic UI", "游ゴシック体", "Yu Gothic", YuGothic, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "Meiryo UI", "メイリオ", Meiryo, Osaka, sans-serif;
+}
+#headder {
+  display: flex;
+}
+#headder a,
+#headder h1 {
+  margin-right: auto;
+  color: black;
+}
+#headder span {
+  display: inline-flex;
+  align-items: center;
+}
+#headder span input {
+  border: 1px solid blue;
+}
+#headder span button {
+  background-color: #81DAF5;
+}
+#wrap,
+#footer {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#wrap {
+  background-color: white;
+  min-height: 100vh;
+  padding: 0px 20px 20px 20px;
+}
+#rank_wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#rank_wrap .ranking {
+  flex: 1;
+}
+#rank_wrap .ranking h2 {
+  text-align: center;
+}
+.ranking {
+  background-color: #E0F8F7;
+  border: 1px solid #58D3F7;
+  border-radius: 5px;
+}
+.ranking a,
+.ranking a:visited {
+  color: black;
+}
+#daily {
+  margin-right: 2px;
+}
+#total {
+  margin-left: 2px;
+}
+#mobilemenu {
+  display: none;
+}
+.info {
+  display: flex;
+  margin-top: 5px;
+  padding: 10px;
+  background-color: #A9F5A9;
+  border-radius: 10px;
+  border: 1px solid #01DF01;
+}
+.info p {
+  font-size: 15px;
+  margin: 0;
+}
+.info button {
+  margin-left: auto;
+  color: white;
+  background-color: #FA5882;
+  border: 1px solid red;
+}
+.menu {
+  display: flex;
+}
+.menu p:first-child {
+  margin-right: auto;
+}
+.rank_item {
+  margin: 15px;
+  background-color: white;
+  border: 1px solid #c8c8c8;
+  border-radius: 2px;
+  padding: 10px;
+}
+.rank_item span {
+  margin: 2px 5px;
+  display: flex;
+}
+.rank_item span p {
+  margin-left: auto;
+}
+.rank_item p {
+  text-align: center;
+}
+.rank_item img {
+  display: block;
+  margin: 0 auto;
+}
+.rank_item:hover {
+  transition: all 300ms 0s ease;
+  border: 1px solid blue;
+}
+.rank_top img {
+  max-height: 350px;
+  max-width: 250px;
+}
+.rank_other img {
+  max-height: 150px;
+  max-width: 250px;
+}
+.rank_search span {
+  display: block;
+}
+.rank_search span p {
+  font-size: 9px;
+  max-width: 200px;
+}
+.rank_search span h3,
+.rank_search span p {
+  margin: 0;
+}
+.rank_search img {
+  max-width: 200px;
+  max-height: 200px;
+}
+.rank_search p {
+  margin: 0;
+  max-width: 200px;
+  font-size: 12px;
+}
+.rank_item + .rank_search {
+  margin: 5px;
+  padding: 3px;
+}
+#footer {
+  padding: 20px;
+  background-color: #2ECCFA;
+}
+#footer p {
+  text-align: center;
+  color: white;
+}
+.disable {
+  pointer-events: none;
+  color: gray;
+}
+a {
+  text-decoration: none;
+}
+#page-top {
+  font-size: 0;
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  opacity: 0;
+}
+#page-top.fade-in {
+  color: #000;
+  font-size: 60px;
+  opacity: 0.6;
+  transition: opacity 1s;
+}
+.upicon {
+  font-size: 60px;
+}
+.upicon:hover {
+  cursor: pointer;
+}
+.monappy_button {
+  height: 20px;
+  box-sizing: border-box;
+  padding: 1px 8px 1px 6px;
+  background-color: #F7D358;
+  color: #000;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  position: relative;
+  margin: 0;
+  vertical-align: top;
+  display: inline-block;
+  font-size: 12px;
+}
+.m {
+  display: none;
+}
+.sa {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+}
+@media screen and (max-width: 1210px) {
+  .sa {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  #wrap {
+    padding: 0;
+  }
+  .rank_item {
+    margin: 5px 0px;
+  }
+  #wrap,
+  #footer {
+    max-width: none;
+    margin: 0;
+  }
+  #headder {
+    display: block;
+  }
+  #headder h1 {
+    text-align: center;
+    margin: auto;
+  }
+  #headder span {
+    display: block;
+    text-align: center;
+    align-items: none;
+  }
+  .menu {
+    display: block;
+  }
+  #rank_wrap {
+    display: block;
+  }
+  #daily {
+    margin-right: 0px;
+  }
+  #total {
+    margin-left: 0px;
+  }
+  #mobilemenu {
+    display: block;
+  }
+  #mobilemenu p {
+    text-align: center;
+  }
+  .pc {
+    display: none;
+  }
+  .m {
+    display: block;
+  }
+}
