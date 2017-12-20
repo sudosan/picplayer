@@ -14,7 +14,7 @@ MongoClient.connect(url, function(err, db) {
       headers: {'Content-type': 'application/json'},
       qs: {
         max:'30',
-        offset:offset+30
+        offset:offset
       },
       json: true
       }, function(err, req, data){
