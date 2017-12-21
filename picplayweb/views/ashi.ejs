@@ -3,6 +3,18 @@
   <p>このサイトはMonappyの公開APIを利用して提供しております</p>
 </div>
 <div id="page-top" class="upicon">👆</div>
+<div id="notice">
+  <h1>自分は１８歳以上だと思いますか？</h1>
+  <h2 onclick="r18true(true);">はい</h2>
+  <h2 onclick="r18true(false);">いいえ</h2>
+</div>
+<div id="down_button">
+  <a id="downButton" href="javascript:void(0);">一括DL</a>
+  <progress id="pr1" style="display:none" max="" value=""></progress>
+</div>
 <script async type="text/javascript" src="/javascripts/top.js"></script>
+<script>
+  var list=[<%-list %>];
+</script>
 </body>
 </html>

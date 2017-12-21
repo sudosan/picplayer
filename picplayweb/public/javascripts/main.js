@@ -26,3 +26,63 @@ function search(b) {
     }
   }
 }
+//こんな機能誰も求めてないと思うんだけどうるさい人がいるのでいちおう
+window.addEventListener("load", () => {
+  checkR18();
+  document.getElementById("downButton").onclick=function(){
+    download();
+  }
+});
+function r18true(bool){
+  if(bool==true){
+    document.cookie = 'r18=true;expires=Tue, 1-Jan-2030 00:00:00 GMT;';
+  }
+  else{
+    window.location.href = "/?target=general";
+  }
+  document.getElementById("notice").style.display="none";
+}
+function checkR18(){
+  if(document.cookie.match(/r18=true/)||location.search.match(/target=general/)){
+    document.getElementById("notice").style.display="none";
+  }
+  else{
+    document.getElementById("notice").style.display="block";
+  }
+}
+//全部ダウンロードしたぃ
+//怒られたらやめる
+function download(){
+  console.log(list.length);
+  var zip = new JSZip();
+  var img = zip.folder("image");
+  loop();
+  document.getElementById("downButton").onclick=function(){
+    return false;
+  }
+  document.getElementById("pr1").style="display:block;";
+  document.getElementById("pr1").max=list.length;
+  var n=0;
+  function loop(){
+    if(!list[0]){
+      zip.generateAsync({type:"blob"}).then(function(content) {
+          saveAs(content, "monapic.zip");
+          document.getElementById("downButton").onclick=function(){
+            download();
+          }
+          document.getElementById("pr1").style="display:none;";
+      });
+    }
+    else {
+      fetch("/proxy/"+list[0],{mode: 'cors'}).then(function(response) {
+        return response.blob();
+      }).then(function(blob) {
+        img.file(list[0], blob, {binary:true});
+        list.shift();
+        n++;
+        document.getElementById("pr1").value=n;
+        loop();
+      });
+    }
+  }
+}

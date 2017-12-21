@@ -2,9 +2,13 @@ var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb://localhost:27017/ms";
+var list=[];
 MongoClient.connect(url, function(err, db) {
+
   /* GET home page. */
   router.get('/', function(req, res, next) {
+
+    list=[];
     var menu = genMenu(req,false);
     db.collection("postedData").find(menu.q_target,{_id:0}).sort(menu.q_index).limit(250).toArray(function(err, docs) {
       var date = new Date();
@@ -12,11 +16,12 @@ MongoClient.connect(url, function(err, db) {
       //console.log(utcDate);
       db.collection("postedData").find({$and:[{"created_at":utcDate},menu.q_target]},{_id:0}).sort(menu.q_index).limit(250).toArray(function(err, docs2) {
         //console.log(docs2);
-        res.render('index', { total: genHtml(docs,false),daily: genHtml(docs2,false),imenu:menu.index_html,tmenu:menu.target_html });
+        res.render('index', { total: genHtml(docs,false),daily: genHtml(docs2,false),imenu:menu.index_html,tmenu:menu.target_html,list:list });
       });
     });
   });
   router.get('/search', function(req, res, next) {
+    list=[];
     if(req.query.q==""||!req.query.q){
       res.redirect(302, "/");
     }
@@ -35,13 +40,14 @@ MongoClient.connect(url, function(err, db) {
       //var waryreg = new RegExp({$or:wary});
       db.collection("postedData").find({$and:wary},{_id:0}).sort(menu.q_index).limit(1000).toArray(function(err, docs) {
         //console.log(err);
-        res.render('search',{result:genHtml(docs,true),imenu:menu.index_html,tmenu:menu.target_html,sw:word});
+        res.render('search',{result:genHtml(docs,true),imenu:menu.index_html,tmenu:menu.target_html,sw:word,list:list});
       });
     }
   });
 });
 function genHtml(docs,s){
   var html="";
+
     for(var i=0;i<docs.length;i++){
     //console.log(docs[i]);
     html+='<a href="https://monappy.jp/picture_places/view/'+docs[i].id+'" target="_blank"><div class="rank_item ';
@@ -58,7 +64,8 @@ function genHtml(docs,s){
     }
     var pattern = /(.+)(\.[^.]+$)/;
 
-    html+='"><span><h3>'+(i+1)+'位</h3><p>'+docs[i].received_mona/100000000+'Mona/'+docs[i].view+'View</p></span><img src="images/loader.svg" data-normal="https://img.monaffy.jp/img/picture_place/preview/'+docs[i].id+docs[i].image_url.match(pattern)[2]+'" data-retina="'+ docs[i].image_url +'" alt="'+docs[i].name+'"><p><object><a href="search?q='+docs[i].creator+'">'+docs[i].creator+'</a></object>/'+docs[i].name+'</p></div></a>';
+    list.push("'"+docs[i].image_url.match(".+/(.+?)([\?#;].*)?$")[1]+"'");
+    html+='"><span><h3>'+(i+1)+'位</h3><p>'+docs[i].received_mona/100000000+'Mona/'+docs[i].view+'View</p></span><img src="images/loader.svg" data-normal="https://img.monaffy.jp/img/picture_place/preview/'+docs[i].id+docs[i].image_url.match(pattern)[2]+'" alt="'+docs[i].name+'"><p><object><a href="search?q='+docs[i].creator+'">'+docs[i].creator+'</a></object>/'+docs[i].name+'</p></div></a>';
   }
   return html;
 }
