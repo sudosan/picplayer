@@ -65,7 +65,7 @@ function genHtml(docs,s){
     var pattern = /(.+)(\.[^.]+$)/;
 
     list.push("'"+docs[i].image_url.match(".+/(.+?)([\?#;].*)?$")[1]+"'");
-    html+='"><span><h3>'+(i+1)+'位</h3><p>'+docs[i].received_mona/100000000+'Mona/'+docs[i].view+'View</p></span><img src="images/loader.svg" data-normal="https://img.monaffy.jp/img/picture_place/preview/'+docs[i].id+docs[i].image_url.match(pattern)[2]+'" alt="'+docs[i].name+'"><p><object><a href="search?q='+docs[i].creator+'">'+docs[i].creator+'</a></object>/'+docs[i].name+'</p></div></a>';
+    html+='"><span><h3>'+(i+1)+'位</h3><p>'+docs[i].received_mona/100000000+'Mona/'+docs[i].view+'View</p></span><img src="images/loader.svg" data-normal="https://img.monaffy.jp/img/picture_place/preview/'+docs[i].id+docs[i].image_url.match(pattern)[2]+'" alt="'+preg_quote(docs[i].name)+'"><p><object><a href="search?q='+preg_quote(docs[i].creator)+'">'+preg_quote(docs[i].creator)+'</a></object>/'+preg_quote(docs[i].name)+'</p></div></a>';
   }
   return html;
 }
