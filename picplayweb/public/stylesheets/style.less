@@ -86,7 +86,10 @@ body {
   }
 }
 .rank_item{
-  margin:15px;
+  transition: background-color 0.1s ease;
+  transition: color 0.1s ease;
+  a{transition: color 0.1s ease;}
+  margin: 15px 3px;
   background-color: white;
   border: 1px solid rgb(200,200,200);
   border-radius: 2px;
@@ -103,9 +106,20 @@ body {
     text-align: center;
   }
   img{
+    transition: filter 0.3s ease;
     display: block;
     margin:0 auto;
   }
+}
+.rank_item:hover{
+  background-color: black;
+  color:white;
+  a{
+    color:white;
+  }
+}
+.rank_item img:hover{
+  filter: saturate(1.2);
 }
 .rank_item:hover{
   transition: all 300ms 0s ease;
@@ -113,14 +127,21 @@ body {
 }
 .rank_top{
   img{
-    max-height: 350px;
-    max-width: 250px;
+    transition: max-height 2.2s ease; //仕様が変なためかなりでかい秒数を入れておく
+    max-height: 100vh;
+    max-width: 100%;
   }
 }
 .rank_other{
   img{
-    max-height: 150px;
-    max-width: 250px;
+    transition: max-height 2.2s ease;
+    max-height: 30vh;
+    max-width: 100%;
+  }
+}
+.rank_top:hover,.rank_other:hover{
+  img{
+    max-height: 200vh;
   }
 }
 .rank_search{
@@ -201,6 +222,7 @@ text-decoration: none;
 }
 .m {
   display: none;
+  text-align: center;
 }
 .sa {
   position: fixed;
@@ -263,11 +285,39 @@ text-decoration: none;
 #notice {
   display: none;
   position: fixed;
-  top:0px;
-  bottom:0px;
-  left:0px;
-  right:0px;
+  width: 400px;
+  border: 5px solid;
+  padding: 20px;
+  border-radius: 20px;
+  border-color: rgba(0, 204, 204, 0.64);
+  box-shadow: 2px 2px rgba(100,100,100,0.5);
   background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  h2{
+    background-color: green;
+    border-radius: 5px;
+    color: white;
+    margin: 2px;
+    text-align: center;
+  }
+  p{
+    text-align: center;
+  }
+}
+html,body{
+  overflow: hidden;
+}
+#wrap{
+  transition: filter 1s ease;
+  filter: blur(10px);
+  pointer-events: none;
+}
+@media screen and (max-width:767px) {
+  #notice{
+    width: calc(100% - 50px);
+  }
 }
 #down_button{
   position: fixed;

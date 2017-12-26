@@ -29,9 +29,9 @@ function search(b) {
 //こんな機能誰も求めてないと思うんだけどうるさい人がいるのでいちおう
 window.addEventListener("load", () => {
   checkR18();
-  document.getElementById("downButton").onclick=function(){
-    download();
-  }
+  //document.getElementById("downButton").onclick=function(){
+  //  download();
+  //}
 });
 function r18true(bool){
   if(bool==true){
@@ -40,11 +40,12 @@ function r18true(bool){
   else{
     window.location.href = "/?target=general";
   }
-  document.getElementById("notice").style.display="none";
+  noticeClose();
 }
 function checkR18(){
   if(document.cookie.match(/r18=true/)||location.search.match(/target=general/)){
-    document.getElementById("notice").style.display="none";
+    document.getElementById("wrap").style.transition="all 0s";
+    noticeClose();
   }
   else{
     document.getElementById("notice").style.display="block";
@@ -52,6 +53,13 @@ function checkR18(){
 }
 function r18guest(){
   document.cookie = 'r18=true;';
+  noticeClose();
+}
+function noticeClose(){
+  document.getElementsByTagName("html")[0].style.overflow="visible";
+  document.getElementsByTagName("body")[0].style.overflow="visible";
+  document.getElementById("wrap").style.filter="none";
+  document.getElementById("wrap").style.pointerEvents="auto";
   document.getElementById("notice").style.display="none";
 }
 //全部ダウンロードしたぃ

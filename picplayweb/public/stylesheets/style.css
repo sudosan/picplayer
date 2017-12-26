@@ -88,11 +88,16 @@ body {
   margin-right: auto;
 }
 .rank_item {
-  margin: 15px;
+  transition: background-color 0.1s ease;
+  transition: color 0.1s ease;
+  margin: 15px 3px;
   background-color: white;
   border: 1px solid #c8c8c8;
   border-radius: 2px;
   padding: 10px;
+}
+.rank_item a {
+  transition: color 0.1s ease;
 }
 .rank_item span {
   margin: 2px 5px;
@@ -105,20 +110,37 @@ body {
   text-align: center;
 }
 .rank_item img {
+  transition: filter 0.3s ease;
   display: block;
   margin: 0 auto;
+}
+.rank_item:hover {
+  background-color: black;
+  color: white;
+}
+.rank_item:hover a {
+  color: white;
+}
+.rank_item img:hover {
+  filter: saturate(1.2);
 }
 .rank_item:hover {
   transition: all 300ms 0s ease;
   border: 1px solid blue;
 }
 .rank_top img {
-  max-height: 350px;
-  max-width: 250px;
+  transition: max-height 2.2s ease;
+  max-height: 100vh;
+  max-width: 100%;
 }
 .rank_other img {
-  max-height: 150px;
-  max-width: 250px;
+  transition: max-height 2.2s ease;
+  max-height: 30vh;
+  max-width: 100%;
+}
+.rank_top:hover img,
+.rank_other:hover img {
+  max-height: 200vh;
 }
 .rank_search span {
   display: block;
@@ -195,6 +217,7 @@ a {
 }
 .m {
   display: none;
+  text-align: center;
 }
 .sa {
   position: fixed;
@@ -258,11 +281,40 @@ a {
 #notice {
   display: none;
   position: fixed;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
+  width: 400px;
+  border: 5px solid;
+  padding: 20px;
+  border-radius: 20px;
+  border-color: rgba(0, 204, 204, 0.64);
+  box-shadow: 2px 2px rgba(100, 100, 100, 0.5);
   background-color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#notice h2 {
+  background-color: green;
+  border-radius: 5px;
+  color: white;
+  margin: 2px;
+  text-align: center;
+}
+#notice p {
+  text-align: center;
+}
+html,
+body {
+  overflow: hidden;
+}
+#wrap {
+  transition: filter 1s ease;
+  filter: blur(10px);
+  pointer-events: none;
+}
+@media screen and (max-width: 767px) {
+  #notice {
+    width: calc(50%);
+  }
 }
 #down_button {
   position: fixed;
