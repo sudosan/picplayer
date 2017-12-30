@@ -234,6 +234,11 @@ text-decoration: none;
    display: none;
  }
 }
+@media screen and (max-width:1100px){
+  #down_button,#info{
+    display: none;
+  }
+}
 @media screen and (max-width:767px) {
   #wrap{
     padding: 0;
@@ -319,16 +324,43 @@ html,body{
     width: calc(100% - 50px);
   }
 }
+.rank_hide{
+  display: none;
+}
+.nextButton{
+  transition: color 0.1s ease;
+  margin: 15px 3px;
+  background-color: white;
+  border: 1px solid #c8c8c8;
+  border-radius: 2px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+.ranking > .nextButton{
+  width: auto;
+}
+.nextButton:hover{
+  color:white;
+  background-color: black;
+}
 #down_button{
   position: fixed;
   bottom:0px;
   left: 0px;
-  background-color: rgba(255,255,255,0.3)
 }
-#downButton{
-  background-color: #04B404;
-  border-radius: 2px;
-  color:white;
-  padding: 4px;
-  text-decoration: none;
+#downCommand{
+  margin:0;
+  color:rgba(255,255,255,0.4);
+}
+#info{
+  position: fixed;
+  right: 0;
+  bottom: 50%;
+  background-color: rgba(255,255,255,0.7);
+  border-radius: 5px;
+  border: 1px solid lightblue;
+  padding: 10px;
+  margin: 0;
 }

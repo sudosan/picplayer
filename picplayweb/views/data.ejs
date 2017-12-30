@@ -1,0 +1,73 @@
+<%- include("./kao_norank"); -%>
+  <h2>Monappy統計情報</h2>
+  <div id="rank_wrap" style="display:block;">
+    <p>総投稿:現在<%=totalinfo %>件</p>
+    <h3>モナゲ率</h3>
+    <div id="piechart" style="width: 100%; min-height: 500px;"></div>
+    <h3>R18率</h3>
+    <div id="piechart2" style="width: 100%; min-height: 500px;"></div>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <div id="calendar_basic" style="width: 100%; min-height: 450px;"></div>
+
+  </div>
+</div>
+<!--折れ線グラフ-->
+<script>
+google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+var dataTable= new google.visualization.DataTable();
+dataTable.addColumn('datetime','日時');
+dataTable.addColumn('number','投稿数');
+
+dataTable.addRows([<%- a %>]);
+var options = {title: 'ピクプレの投稿総数'};
+var chart = new google.charts.Line(document.getElementById('calendar_basic'));
+chart.draw(dataTable, google.charts.Line.convertOptions(options));
+}
+</script>
+<!--も投げ率-->
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        <% var monagenashi = totalinfo-monage; %>
+        var data = google.visualization.arrayToDataTable([
+           ['項目', '総数'],
+          ['モナゲ無し',     <%=monagenashi %>],
+          ['モナゲあり',      <%=monage %>]
+        ]);
+
+        var options = {
+          title: '投稿のうち何らかのモナゲがされているか否か'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <!--r18率-->
+    <script type="text/javascript">
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            <% var st9708f = totalinfo-r18; %>
+            var data = google.visualization.arrayToDataTable([
+               ['項目', '総数'],
+              ['一般向け',     <%=st9708f %>],
+              ['R-18',      <%=r18 %>]
+            ]);
+
+            var options = {
+              title: '投稿のうちの成人向け投稿の割合'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+            chart.draw(data, options);
+          }
+        </script>
+<%- include("./ashi_norank"); -%>

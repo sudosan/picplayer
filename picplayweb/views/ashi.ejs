@@ -2,11 +2,18 @@
   <p>(C)sudosan 画像等の著作権は作者に帰属します。</p>
   <p>このサイトはMonappyの公開APIを利用して提供しております</p>
 </div>
+<div id="info">
+  <h3>Monappy総投稿数</h3>
+  <p><%=totalinfo %>件</p>
+  <a href="/data">詳しい統計はこちら</a>
+  <hr>
+  <a hreF="/about">About me</a>
+</div>
 <div id="page-top" class="upicon">👆</div>
-<!--div id="down_button">
-  <a id="downButton" href="javascript:void(0);">一括DL</a>
+<div id="down_button">
+  <p id="downCommand">↑↑↓↓←→←→BA</p>
   <progress id="pr1" style="display:none" max="" value=""></progress>
-</div-->
+</div>
 <div id="notice">
   <!--img src="" alt="1コマ描いてくれる方募集" style="text-align:center;max-width:100%;"-->
   <p>(18歳以上ですか?)</p>
@@ -15,6 +22,7 @@
   <a href="javascript:void(0);" onclick="r18true(false);"><h2 style="background-color:red;">いいえ</h2></a>
 </div>
 <script async type="text/javascript" src="/javascripts/top.js"></script>
+<script async type="text/javascript" src="/javascripts/command.js"></script>
 <script>
   var list=[<%-list %>];
 </script>

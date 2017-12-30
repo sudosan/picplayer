@@ -4,13 +4,10 @@ function imgError(t) {
   var pattern = /(.+)(\.[^.]+$)/;
   t.src=src.match(pattern)[1]+src.match(pattern)[2].toUpperCase();
 }
+var instance;
 window.addEventListener("load", () => {
-  const instance = Layzr({
-    threshold: 100
-  });
-  instance.update().handlers(true);
-  scrollTo(0,1);
-  scrollTo(0,0);
+  instance = Layzr();
+  instance.update().check().handlers(true);
 });
 function infoExit(){
   document.getElementsByClassName("info")[0].style.display="none";
@@ -28,10 +25,16 @@ function search(b) {
 }
 //こんな機能誰も求めてないと思うんだけどうるさい人がいるのでいちおう
 window.addEventListener("load", () => {
-  checkR18();
-  //document.getElementById("downButton").onclick=function(){
-  //  download();
-  //}
+  if(!location.pathname=="/data"||!location.pathname=="/about"){
+    checkR18();
+  }
+  else{
+    document.getElementById("wrap").style.transition="all 0s";
+    document.getElementsByTagName("html")[0].style.overflow="visible";
+    document.getElementsByTagName("body")[0].style.overflow="visible";
+    document.getElementById("wrap").style.filter="none";
+    document.getElementById("wrap").style.pointerEvents="auto";
+  }
 });
 function r18true(bool){
   if(bool==true){
@@ -62,16 +65,30 @@ function noticeClose(){
   document.getElementById("wrap").style.pointerEvents="auto";
   document.getElementById("notice").style.display="none";
 }
+function rankNext(v){
+  v.style.display="none";
+  var e= v.parentNode.querySelectorAll('a > .rank_hide');
+  var ei=v.parentNode.querySelectorAll('a > .rank_hide > img');
+  for(i=0;i<e.length;i++){
+    ei[i].dataset.normal=ei[i].dataset.normalhide;
+    ei[i].dataset.normalhide=null;
+    ei[i].dataset.retina=ei[i].dataset.retinahide;
+    ei[i].dataset.retinahide=null;
+    e[i].classList.remove("rank_hide");
+  }
+  instance.update().check();
+}
 //全部ダウンロードしたぃ
 //怒られたらやめる
 function download(){
-  var res = confirm("この機能はmonappyのサーバーに負荷をかけるため乱用はお避けください。実行しますか？ \n また、この機能はモダンブラウザでのみ利用可能です \n (IE/Safariはモダンブラウザではありません。Chrome/Edge/Firefox/Operaをご利用ください。)");
+  var res = confirm("【画像一括ダウンロード】\n この機能はサーバーに負荷をかけるため乱用はお避けください。\n 実行しますか？ \n また、この機能はモダンブラウザでのみ利用可能です \n (IE/Safariはモダンブラウザではありません。Chrome/Edge/Firefox/Operaをご利用ください。) ");
+  //res=false; //現在利用不可能なため
   if(res==true) {
     console.log(list.length);
     var zip = new JSZip();
     var img = zip.folder("image");
     loop();
-    document.getElementById("downButton").style="display:none";
+    document.getElementById("downCommand").style="display:none";
     document.getElementById("pr1").style="display:block;";
     document.getElementById("pr1").max=list.length;
     var n=0;
@@ -83,7 +100,7 @@ function download(){
         });
       }
       else {
-        fetch("https://img.monaffy.jp/img/picture_place/original/"+list[0],{mode: 'cors'}).then(function(response) {
+        fetch("/images/cache/"+list[0],{mode: 'cors'}).then(function(response) {
           return response.blob();
         }).then(function(blob) {
           img.file(list[0], blob, {binary:true});
