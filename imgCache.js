@@ -23,8 +23,9 @@ function getData(){
     }, function(err, req, data){
       nowData = data.data;
       var name = nowData[0].image_url.match(".+/(.+?)([\?#;].*)?$")[1];
-      if(!f.indexOf(name)){
-        console.log(nowData[0]);
+      //console.log(f.indexOf(name));
+      if(f.indexOf(name)<0){
+        //console.log(nowData[0]);
         var outFile = fs.createWriteStream(dir+name);
         var req = http.get(nowData[0].image_url, function (res) {
         res.pipe(outFile);

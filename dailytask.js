@@ -16,7 +16,7 @@ MongoClient.connect(url, function(err, db) {
         var insertData = {day:dt,count:count};
         db.collection("counter").updateOne({day:dt},insertData,{upsert:true}, function(err, result) {
         });
-          console.log(dt+count)
+          //console.log(dt+count)
         countInsert();
       });
     }
