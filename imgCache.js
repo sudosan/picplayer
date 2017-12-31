@@ -5,7 +5,7 @@ var request = require('request');
 var URL = 'https://api.monappy.jp/v1/picture_places';
 var offset = 0;
 
-var dir = "picplayweb/public/images/cache/";
+var dir = process.argv[1].replace(/imgCache.js/,"")+"picplayweb/public/images/cache/";
 var f;
 fs.readdir(dir, function(err, files) {
   f=files;
