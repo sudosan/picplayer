@@ -95,7 +95,7 @@ function download(){
     function loop(){
       if(!list[0]){
         zip.generateAsync({type:"blob"}).then(function(content) {
-            saveAs(content, "monapic.zip");
+            saveAs(content, "monapic"+new Date().getTime()+".zip");
             document.getElementById("down_button").style="display:none;";
         });
       }
@@ -112,4 +112,51 @@ function download(){
       }
     }
   }
+}
+//円換算
+function monaToJpy(){
+  var monaValue = document.querySelectorAll('div > a > div > span > p');
+  fetch("https://public.bitbank.cc/mona_jpy/ticker",{mode: 'cors'}).then(function(response) {
+  return response.json();
+  }).then(function(json) {
+    for(i=0;i<monaValue.length;i++){
+      monaValue[i].innerText = "¥"+Math.round(monaValue[i].dataset.mona*json.data.last).toLocaleString()+"/"+monaValue[i].innerText.split("/")[1];
+    }
+  });
+}
+function monaToJpyInterval(){
+  monaToJpy();
+  reInt=setInterval(monaToJpy,10000);
+}
+function monaToJpyIntervalReset(){
+  clearInterval(reInt);
+}
+function changeMona2JpyChk(bool){
+  var streamStatus = document.getElementById("streamStatus");
+  if(bool){
+    monaToJpyInterval();
+    streamStatus.innerHTML='<img src="/images/ajax-loader.gif">自動更新中';
+    dotStart=setInterval(animeDot,250);
+  }
+  else{
+    monaToJpyIntervalReset();
+    clearInterval(dotStart);
+    document.getElementById("dotElement").innerText="";
+    var monaValue = document.querySelectorAll('div > a > div > span > p');
+    for(i=0;i<monaValue.length;i++){
+      monaValue[i].innerText = monaValue[i].dataset.mona+"Mona/"+monaValue[i].innerText.split("/")[1];
+    }
+    streamStatus.innerHTML="";
+  }
+}
+var dot=".";
+function animeDot(){
+  var dotElement=document.getElementById("dotElement");
+  if(dot=="..."){
+    dot=""
+  }
+  else{
+    dot+=".";
+  }
+  dotElement.innerText=dot;
 }
